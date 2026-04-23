@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_website_google_consent" model="ir.ui.view">
+        <field name="name">res.config.settings.view.website.google.consent</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+
+            <!--
+                In Odoo 17, the Website settings form has a 'Tracking & SEO' section.
+                We use the cookie_bar setting box as our anchor — it's always present
+                when the Website module is installed.
+            -->
+            <xpath expr="//div[@id='cookies_bar_setting']" position="after">
+
+                <div class="col-12 col-lg-6 o_setting_box" id="google_consent_mode_setting">
+                    <div class="o_setting_left_pane">
+                        <field name="google_consent_mode_enabled"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="google_consent_mode_enabled" string="Google Consent Mode v2"/>
+                        <div class="text-muted">
+                            Inject <code>gtag('consent','default',...)</code> on every page
+                            for GDPR-compliant Google Analytics &amp; Ads tracking.
+                        </div>
+                        <div class="content-group mt8"
+                            invisible="not google_consent_mode_enabled">
+                            <div class="row mt4">
+                                <label for="google_consent_gtag_id"
+                                    class="col-lg-4 o_light_label"
+                                    string="Google Tag ID"/>
+                                <field name="google_consent_gtag_id"
+                                    class="col-lg-8"
+                                    placeholder="G-XXXXXXXXXX or GT-XXXXXXXX"/>
+                            </div>
+                            <div class="row mt4">
+                                <label for="google_consent_manager"
+                                    class="col-lg-4 o_light_label"
+                                    string="Consent Manager"/>
+                                <field name="google_consent_manager" class="col-lg-8"/>
+                            </div>
+                            <div class="row mt4">
+                                <label for="google_consent_url_passthrough"
+                                    class="col-lg-4 o_light_label"
+                                    string="URL Passthrough"/>
+                                <field name="google_consent_url_passthrough" class="col-lg-8"/>
+                            </div>
+                            <div class="row mt4">
+                                <label for="google_consent_ads_data_redaction"
+                                    class="col-lg-4 o_light_label"
+                                    string="Redact Ads Data"/>
+                                <field name="google_consent_ads_data_redaction" class="col-lg-8"/>
+                            </div>
+                            <div class="row mt8">
+                                <div class="col-lg-12">
+                                    <button
+                                        type="action"
+                                        name="%(valryx_google_consent_mode.action_website_google_consent)d"
+                                        class="btn btn-link p-0 text-primary">
+                                        &#8594; Configure Default Consents
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
