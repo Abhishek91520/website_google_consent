@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ── List View ─────────────────────────────────────────────────────── -->
+    <record id="view_website_google_consent_list" model="ir.ui.view">
+        <field name="name">website.google.consent.list</field>
+        <field name="model">website.google.consent</field>
+        <field name="arch" type="xml">
+            <list string="Google Consent Defaults" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="website_id" optional="show"/>
+                <field name="regions" optional="show"/>
+                <field name="ad_storage"
+                    decoration-success="ad_storage == 'granted'"
+                    decoration-danger="ad_storage == 'denied'"/>
+                <field name="ad_user_data"
+                    decoration-success="ad_user_data == 'granted'"
+                    decoration-danger="ad_user_data == 'denied'"/>
+                <field name="ad_personalization"
+                    decoration-success="ad_personalization == 'granted'"
+                    decoration-danger="ad_personalization == 'denied'"/>
+                <field name="analytics_storage"
+                    decoration-success="analytics_storage == 'granted'"
+                    decoration-danger="analytics_storage == 'denied'"/>
+                <field name="functionality_storage"
+                    decoration-success="functionality_storage == 'granted'"
+                    decoration-danger="functionality_storage == 'denied'"/>
+                <field name="personalization_storage"
+                    decoration-success="personalization_storage == 'granted'"
+                    decoration-danger="personalization_storage == 'denied'"/>
+                <field name="security_storage"
+                    decoration-success="security_storage == 'granted'"
+                    decoration-danger="security_storage == 'denied'"/>
+                <field name="wait_for_update" optional="hide"/>
+                <field name="active" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ── Form View ─────────────────────────────────────────────────────── -->
+    <record id="view_website_google_consent_form" model="ir.ui.view">
+        <field name="name">website.google.consent.form</field>
+        <field name="model">website.google.consent</field>
+        <field name="arch" type="xml">
+            <form string="Google Consent Default">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name" placeholder="e.g. EU Default – Denied"/></h1>
+                    </div>
+                    <group>
+                        <group string="Scope">
+                            <field name="website_id"/>
+                            <field name="regions"
+                                placeholder="AT,BE,DE,FR,... (leave empty for all regions)"/>
+                            <field name="wait_for_update"/>
+                            <field name="sequence"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Consent Parameters (v2)">
+                            <field name="ad_storage"/>
+                            <field name="ad_user_data"/>
+                            <field name="ad_personalization"/>
+                            <field name="analytics_storage"/>
+                            <field name="functionality_storage"/>
+                            <field name="personalization_storage"/>
+                            <field name="security_storage"/>
+                        </group>
+                    </group>
+                    <group string="Parameter Descriptions">
+                        <div class="o_field_widget" colspan="2">
+                            <table class="table table-sm table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Parameter</th>
+                                        <th>v2</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><code>ad_storage</code></td><td></td><td>Storage (cookies) for advertising</td></tr>
+                                    <tr><td><code>ad_user_data</code></td><td>✓</td><td>Sending user data to Google for ads</td></tr>
+                                    <tr><td><code>ad_personalization</code></td><td>✓</td><td>Personalized advertising</td></tr>
+                                    <tr><td><code>analytics_storage</code></td><td></td><td>Storage for analytics (visit duration, etc.)</td></tr>
+                                    <tr><td><code>functionality_storage</code></td><td></td><td>Storage for website functionality (language, etc.)</td></tr>
+                                    <tr><td><code>personalization_storage</code></td><td></td><td>Storage for personalization (video recommendations, etc.)</td></tr>
+                                    <tr><td><code>security_storage</code></td><td></td><td>Storage for security (auth, fraud prevention)</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- ── Action ────────────────────────────────────────────────────────── -->
+    <record id="action_website_google_consent" model="ir.actions.act_window">
+        <field name="name">Google Consent Defaults</field>
+        <field name="res_model">website.google.consent</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No Google Consent defaults configured yet.
+            </p>
+            <p>
+                Create a record to define default consent values that will be
+                injected into the <code>gtag('consent','default', ...)</code>
+                call on every page of your website.
+            </p>
+        </field>
+    </record>
+
+    <!-- ── Menu under Website > Configuration ────────────────────────────── -->
+    <menuitem id="menu_website_google_consent_root"
+        name="Google Consent Mode"
+        parent="website.menu_website_configuration"
+        action="action_website_google_consent"
+        sequence="50"/>
+
+</odoo>

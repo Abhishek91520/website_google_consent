@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_website_google_consent_manager,website.google.consent manager,model_website_google_consent,base.group_system,1,1,1,1
+access_website_google_consent_user,website.google.consent user,model_website_google_consent,base.group_user,1,0,0,0

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        Main template: inject Google Consent Mode defaults into <head>
+        BEFORE any other Google scripts fire.
+
+        Rendering happens server-side via QWeb; the get_consent_json() helper
+        on the model returns a safe JSON string so we never need to call
+        Python's json module inside the template.
+    -->
+    <template id="google_consent_head" name="Google Consent Mode – Head Injection"
+              inherit_id="website.layout">
+        <xpath expr="//head" position="inside">
+            <t t-if="website.google_consent_mode_enabled and website.google_consent_gtag_id">
+
+                <!-- 1. dataLayer + gtag stub — MUST be first -->
+                <script type="text/javascript">
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+                </script>
+
+                <!-- 2. Consent defaults — get_active_consent_configs() always returns
+                     at least the privacy-safe fallback (Fix 4), so this loop
+                     always emits at least one gtag('consent','default',...) call. -->
+                <script type="text/javascript">
+                    <t t-set="consent_configs" t-value="website.get_active_consent_configs()"/>
+                    <t t-foreach="consent_configs" t-as="consent">
+gtag('consent', 'default', <t t-out="consent.get_consent_json()"/>);
+                    </t>
+                    <t t-if="website.google_consent_url_passthrough">
+gtag('set', 'url_passthrough', true);
+                    </t>
+                    <t t-if="website.google_consent_ads_data_redaction">
+gtag('set', 'ads_data_redaction', true);
+                    </t>
+                </script>
+
+                <!-- 3. Load gtag.js async (standard Google snippet) -->
+                <script type="text/javascript"
+                    t-att-src="'https://www.googletagmanager.com/gtag/js?id=' + website.google_consent_gtag_id"
+                    async="async"/>
+
+                <!-- 4. Configure tag + timestamp -->
+                <script type="text/javascript">
+gtag('js', new Date());
+gtag('config', '<t t-out="website.google_consent_gtag_id"/>');
+                </script>
+
+                <!-- 5. Expose JS helper API + flags for consent_update.js -->
+                <script type="text/javascript">
+window.valryxGoogleConsent = {
+    update: function(p) { if (typeof gtag === 'function') { gtag('consent', 'update', p); } },
+    grantAll: function() {
+        window.valryxGoogleConsent.update({
+            ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted',
+            analytics_storage:'granted', functionality_storage:'granted',
+            personalization_storage:'granted', security_storage:'granted'
+        });
+    },
+    denyAll: function() {
+        window.valryxGoogleConsent.update({
+            ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied',
+            analytics_storage:'denied', functionality_storage:'granted',
+            personalization_storage:'denied', security_storage:'granted'
+        });
+    }
+};
+window.valryxConsentModeEnabled = true;
+window.valryxConsentManager = '<t t-out="website.google_consent_manager or 'none'"/>';
+                </script>
+
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<style>
+:root {
+    --ink: #11243b;
+    --muted: #5f6e80;
+    --accent: #ea580c;
+    --accent-dark: #c2410c;
+    --paper: #fffdf8;
+    --card: #ffffff;
+    --line: #eadfce;
+    --ok: #0f766e;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background:
+        radial-gradient(circle at 10% -10%, #ffe8cc 0, rgba(255, 232, 204, 0) 48%),
+        radial-gradient(circle at 100% 0, #ffd7b5 0, rgba(255, 215, 181, 0) 34%),
+        var(--paper);
+    color: var(--ink);
+    font-family: "Segoe UI", "Trebuchet MS", Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.page {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 24px 16px 40px;
+}
+
+.hero {
+    background: linear-gradient(140deg, #fff6e9 0%, #fff 45%, #ffedd5 100%);
+    border: 1px solid #f5d9b5;
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 18px 40px rgba(17, 36, 59, 0.08);
+}
+
+.label {
+    display: inline-block;
+    background: #fff;
+    color: var(--accent-dark);
+    border: 1px solid #fdba74;
+    border-radius: 999px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+.title {
+    margin: 14px 0 10px;
+    font-size: 34px;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+}
+
+.subtitle {
+    margin: 0;
+    color: var(--muted);
+    font-size: 18px;
+    max-width: 760px;
+}
+
+.kpis {
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.kpi {
+    background: #fff;
+    border: 1px solid #f3ddc3;
+    border-radius: 12px;
+    padding: 10px 12px;
+}
+
+.kpi strong {
+    display: block;
+    font-size: 22px;
+    line-height: 1.1;
+}
+
+.kpi span {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.section {
+    margin-top: 22px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 22px;
+}
+
+.section h2 {
+    margin: 0 0 8px;
+    font-size: 24px;
+}
+
+.section p.lead {
+    margin: 0;
+    color: var(--muted);
+}
+
+.split {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.box {
+    border: 1px solid #f1e4d3;
+    border-radius: 12px;
+    padding: 14px;
+    background: #fffdfa;
+}
+
+.box h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+}
+
+ul.clean {
+    margin: 0;
+    padding-left: 18px;
+}
+
+ul.clean li {
+    margin: 6px 0;
+}
+
+.grid {
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.feature {
+    border: 1px solid #f1e4d3;
+    border-radius: 12px;
+    padding: 12px;
+    background: linear-gradient(160deg, #fff, #fff8ef);
+}
+
+.feature h3 {
+    margin: 0 0 6px;
+    font-size: 17px;
+}
+
+.feature p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.steps {
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.step {
+    border: 1px solid #f1e4d3;
+    border-radius: 12px;
+    padding: 12px;
+    background: #fff;
+}
+
+.step b {
+    color: var(--accent-dark);
+}
+
+.cta {
+    margin-top: 22px;
+    background: linear-gradient(120deg, #1e293b, #0f172a);
+    color: #fff;
+    border-radius: 18px;
+    padding: 22px;
+    text-align: center;
+}
+
+.cta h2 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.cta p {
+    margin: 10px 0 0;
+    color: #dbe4ef;
+}
+
+.pill-row {
+    margin-top: 14px;
+}
+
+.pill {
+    display: inline-block;
+    margin: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+.footer {
+    margin-top: 16px;
+    text-align: center;
+    color: #7b8794;
+    font-size: 13px;
+}
+
+.ok {
+    color: var(--ok);
+    font-weight: 600;
+}
+
+@media (max-width: 840px) {
+    .kpis,
+    .split,
+    .grid,
+    .steps {
+        grid-template-columns: 1fr;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+
+    <section class="hero">
+        <span class="label">Odoo 17 - Community and Enterprise</span>
+        <h1 class="title">Google Consent Mode v2 for Website</h1>
+        <p class="subtitle">
+            Configure Google Consent Mode v2 directly in Odoo website settings with
+            region-based defaults and consent updates tied to user choice.
+        </p>
+
+        <div class="kpis">
+            <div class="kpi">
+                <strong>7/7</strong>
+                <span>Consent Mode v2 parameters covered</span>
+            </div>
+            <div class="kpi">
+                <strong>Multi-site</strong>
+                <span>Per website defaults and scope control</span>
+            </div>
+            <div class="kpi">
+                <strong>Native flow</strong>
+                <span>Works with Odoo cookie bar behavior</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Why Teams Buy This Module</h2>
+        <p class="lead">
+            This module provides a structured way to configure Consent Mode v2
+            behavior in Odoo without adding external Python dependencies.
+        </p>
+
+        <div class="split">
+            <div class="box">
+                <h3>Without a robust setup</h3>
+                <ul class="clean">
+                    <li>Google Ads attribution becomes incomplete</li>
+                    <li>Analytics reports lose business clarity</li>
+                    <li>Consent defaults vary across websites and regions</li>
+                </ul>
+            </div>
+            <div class="box">
+                <h3>With this module</h3>
+                <ul class="clean">
+                    <li class="ok">Default consent values are injected from backend configuration</li>
+                    <li class="ok">Consent updates are sent to gtag when users accept or reject</li>
+                    <li class="ok">Website-specific and global rules can be managed in the UI</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Feature Highlights</h2>
+        <div class="grid">
+            <article class="feature">
+                <h3>Complete Consent Mode v2 Mapping</h3>
+                <p>Supports all key consent parameters needed by modern Google measurement flows.</p>
+            </article>
+            <article class="feature">
+                <h3>Region-Aware Defaults</h3>
+                <p>Configure strict defaults for selected regions and separate global behavior.</p>
+            </article>
+            <article class="feature">
+                <h3>Odoo Cookie Bar Integration</h3>
+                <p>Consent updates follow user actions so signal changes are reflected immediately.</p>
+            </article>
+            <article class="feature">
+                <h3>Multi-Website Support</h3>
+                <p>Apply rules per website, or use global records to keep governance consistent.</p>
+            </article>
+            <article class="feature">
+                <h3>Marketing Controls</h3>
+                <p>Includes URL passthrough and ads data redaction options in one place.</p>
+            </article>
+            <article class="feature">
+                <h3>No Extra Runtime Complexity</h3>
+                <p>Built for Odoo installation flow and backend management from day one.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Go Live In 4 Steps</h2>
+        <div class="steps">
+            <div class="step"><b>Step 1</b><br/>Install the module in your addons path.</div>
+            <div class="step"><b>Step 2</b><br/>Enable Google Consent Mode in Website settings.</div>
+            <div class="step"><b>Step 3</b><br/>Add your Google Tag ID and consent defaults.</div>
+            <div class="step"><b>Step 4</b><br/>Publish and monitor analytics quality.</div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>Need a Clear Consent Mode Setup in Odoo?</h2>
+        <p>
+            Use this module to configure and maintain Consent Mode v2 behavior
+            from Odoo backend settings.
+        </p>
+        <div class="pill-row">
+            <span class="pill">Consent v2 ready</span>
+            <span class="pill">GDPR-aware defaults</span>
+            <span class="pill">Fast backend setup</span>
+            <span class="pill">Built for Odoo 17</span>
+        </div>
+    </section>
+
+    <p class="footer">
+        Product compatibility: Odoo 17 Community, Enterprise, Odoo.sh, and On-Premise.
+        Odoo Online availability depends on Odoo Apps deployment support.
+    </p>
+
+</div>
+</body>
+</html>

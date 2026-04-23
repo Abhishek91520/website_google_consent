@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- Global default: privacy-first (denied for all ad/analytics) -->
+    <record id="google_consent_default_global" model="website.google.consent">
+        <field name="name">Global Default – Privacy First</field>
+        <field name="sequence">10</field>
+        <field name="ad_storage">denied</field>
+        <field name="ad_user_data">denied</field>
+        <field name="ad_personalization">denied</field>
+        <field name="analytics_storage">denied</field>
+        <field name="functionality_storage">granted</field>
+        <field name="personalization_storage">denied</field>
+        <field name="security_storage">granted</field>
+        <field name="wait_for_update">500</field>
+    </record>
+
+    <!-- EU/EEA region override: strict denial -->
+    <record id="google_consent_default_eu" model="website.google.consent">
+        <field name="name">EU/EEA – Strict (GDPR)</field>
+        <field name="sequence">5</field>
+        <field name="regions">AT,BE,BG,CY,CZ,DE,DK,EE,ES,FI,FR,GR,HR,HU,IE,IS,IT,LI,LT,LU,LV,MT,NL,NO,PL,PT,RO,SE,SI,SK</field>
+        <field name="ad_storage">denied</field>
+        <field name="ad_user_data">denied</field>
+        <field name="ad_personalization">denied</field>
+        <field name="analytics_storage">denied</field>
+        <field name="functionality_storage">granted</field>
+        <field name="personalization_storage">denied</field>
+        <field name="security_storage">granted</field>
+        <field name="wait_for_update">500</field>
+    </record>
+
+</odoo>
