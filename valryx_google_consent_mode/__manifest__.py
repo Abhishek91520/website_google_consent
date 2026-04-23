@@ -39,7 +39,7 @@ Support: valryx.tech@gmail.com
     ],
     'assets': {
         'web.assets_frontend': [
-            'website_google_consent_mode/static/src/js/consent_update.js',
+            'valryx_google_consent_mode/static/src/js/consent_update.js',
         ],
     },
     'images': [

@@ -1,6 +1,6 @@
 /** @odoo-module **/
 /**
- * website_google_consent_mode – Consent Update Integration
+ * valryx_google_consent_mode – Consent Update Integration
  * Valryx (https://valryx.tech)
  *
  * Production hardened:
