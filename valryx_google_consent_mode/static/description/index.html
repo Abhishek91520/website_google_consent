@@ -1,366 +1,115 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<div style="max-width: 1000px; margin: 0 auto; font-family: 'Segoe UI', Arial, sans-serif; color: #1a2440; line-height: 1.52;">
+    <div style="margin: 0 0 16px 0; border-radius: 14px; overflow: hidden; border: 1px solid #dbe3f3; box-shadow: 0 8px 20px rgba(24, 50, 92, 0.12); transition: all 0.25s ease;">
+        <img src="banner.png" alt="Google Consent Mode v2 banner" width="100%"/>
+    </div>
 
-<style>
-:root {
-    --ink: #11243b;
-    --muted: #5f6e80;
-    --accent: #ea580c;
-    --accent-dark: #c2410c;
-    --paper: #fffdf8;
-    --card: #ffffff;
-    --line: #eadfce;
-    --ok: #0f766e;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    background:
-        radial-gradient(circle at 10% -10%, #ffe8cc 0, rgba(255, 232, 204, 0) 48%),
-        radial-gradient(circle at 100% 0, #ffd7b5 0, rgba(255, 215, 181, 0) 34%),
-        var(--paper);
-    color: var(--ink);
-    font-family: "Segoe UI", "Trebuchet MS", Arial, sans-serif;
-    line-height: 1.6;
-}
-
-.page {
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 24px 16px 40px;
-}
-
-.hero {
-    background: linear-gradient(140deg, #fff6e9 0%, #fff 45%, #ffedd5 100%);
-    border: 1px solid #f5d9b5;
-    border-radius: 20px;
-    padding: 28px;
-    box-shadow: 0 18px 40px rgba(17, 36, 59, 0.08);
-}
-
-.label {
-    display: inline-block;
-    background: #fff;
-    color: var(--accent-dark);
-    border: 1px solid #fdba74;
-    border-radius: 999px;
-    padding: 4px 12px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.2px;
-}
-
-.title {
-    margin: 14px 0 10px;
-    font-size: 34px;
-    line-height: 1.2;
-    letter-spacing: -0.3px;
-}
-
-.subtitle {
-    margin: 0;
-    color: var(--muted);
-    font-size: 18px;
-    max-width: 760px;
-}
-
-.kpis {
-    margin-top: 18px;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-}
-
-.kpi {
-    background: #fff;
-    border: 1px solid #f3ddc3;
-    border-radius: 12px;
-    padding: 10px 12px;
-}
-
-.kpi strong {
-    display: block;
-    font-size: 22px;
-    line-height: 1.1;
-}
-
-.kpi span {
-    color: var(--muted);
-    font-size: 13px;
-}
-
-.section {
-    margin-top: 22px;
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 22px;
-}
-
-.section h2 {
-    margin: 0 0 8px;
-    font-size: 24px;
-}
-
-.section p.lead {
-    margin: 0;
-    color: var(--muted);
-}
-
-.split {
-    margin-top: 16px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-}
-
-.box {
-    border: 1px solid #f1e4d3;
-    border-radius: 12px;
-    padding: 14px;
-    background: #fffdfa;
-}
-
-.box h3 {
-    margin: 0 0 8px;
-    font-size: 18px;
-}
-
-ul.clean {
-    margin: 0;
-    padding-left: 18px;
-}
-
-ul.clean li {
-    margin: 6px 0;
-}
-
-.grid {
-    margin-top: 14px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-}
-
-.feature {
-    border: 1px solid #f1e4d3;
-    border-radius: 12px;
-    padding: 12px;
-    background: linear-gradient(160deg, #fff, #fff8ef);
-}
-
-.feature h3 {
-    margin: 0 0 6px;
-    font-size: 17px;
-}
-
-.feature p {
-    margin: 0;
-    color: var(--muted);
-}
-
-.steps {
-    margin-top: 14px;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 10px;
-}
-
-.step {
-    border: 1px solid #f1e4d3;
-    border-radius: 12px;
-    padding: 12px;
-    background: #fff;
-}
-
-.step b {
-    color: var(--accent-dark);
-}
-
-.cta {
-    margin-top: 22px;
-    background: linear-gradient(120deg, #1e293b, #0f172a);
-    color: #fff;
-    border-radius: 18px;
-    padding: 22px;
-    text-align: center;
-}
-
-.cta h2 {
-    margin: 0;
-    font-size: 28px;
-}
-
-.cta p {
-    margin: 10px 0 0;
-    color: #dbe4ef;
-}
-
-.pill-row {
-    margin-top: 14px;
-}
-
-.pill {
-    display: inline-block;
-    margin: 4px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 999px;
-    padding: 6px 10px;
-    font-size: 12px;
-}
-
-.footer {
-    margin-top: 16px;
-    text-align: center;
-    color: #7b8794;
-    font-size: 13px;
-}
-
-.ok {
-    color: var(--ok);
-    font-weight: 600;
-}
-
-@media (max-width: 840px) {
-    .kpis,
-    .split,
-    .grid,
-    .steps {
-        grid-template-columns: 1fr;
-    }
-
-    .title {
-        font-size: 28px;
-    }
-
-    .subtitle {
-        font-size: 16px;
-    }
-}
-</style>
-</head>
-
-<body>
-<div class="page">
-
-    <section class="hero">
-        <span class="label">Odoo 17 - Community and Enterprise</span>
-        <h1 class="title">Google Consent Mode v2 for Website</h1>
-        <p class="subtitle">
-            Configure Google Consent Mode v2 directly in Odoo website settings with
-            region-based defaults and consent updates tied to user choice.
+    <div style="background: linear-gradient(135deg, #eef4ff, #f9f3ff); border: 1px solid #dde5f9; border-radius: 14px; padding: 16px; margin-bottom: 14px; box-shadow: 0 5px 14px rgba(43, 75, 132, 0.1); transition: all 0.25s ease;">
+        <div style="margin-bottom: 8px;">
+            <span style="display: inline-block; font-size: 12px; font-weight: 700; color: #124dbf; background: #e7f0ff; border: 1px solid #cbddff; border-radius: 16px; padding: 4px 10px; margin-right: 6px;">Odoo 17</span>
+            <span style="display: inline-block; font-size: 12px; font-weight: 700; color: #6134bf; background: #efe7ff; border: 1px solid #ddd0ff; border-radius: 16px; padding: 4px 10px;">Community &amp; Enterprise</span>
+        </div>
+        <h1 style="margin: 0 0 8px 0; font-size: 36px; line-height: 1.15; color: #10244a;">Google Consent Mode v2 for Odoo Website</h1>
+        <p style="margin: 0; color: #4c5d82; font-size: 16px;">
+            Configure Consent Mode v2 from Odoo settings with region-based defaults and consent updates based on visitor choice.
         </p>
+    </div>
 
-        <div class="kpis">
-            <div class="kpi">
-                <strong>7/7</strong>
-                <span>Consent Mode v2 parameters covered</span>
-            </div>
-            <div class="kpi">
-                <strong>Multi-site</strong>
-                <span>Per website defaults and scope control</span>
-            </div>
-            <div class="kpi">
-                <strong>Native flow</strong>
-                <span>Works with Odoo cookie bar behavior</span>
-            </div>
-        </div>
-    </section>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 14px;">
+        <tr>
+            <td width="33.33%" valign="top" style="padding-right: 8px;">
+                <div style="border: 1px solid #dbe5f6; border-radius: 12px; background: linear-gradient(160deg, #ffffff, #f4f9ff); padding: 12px; min-height: 112px; box-shadow: 0 4px 10px rgba(18, 66, 145, 0.08); transition: all 0.25s ease;">
+                    <div style="font-size: 24px; color: #0f4ec7; font-weight: 700; margin-bottom: 4px;">7/7</div>
+                    <div style="color: #5a6882;">Consent Mode v2 parameters covered</div>
+                </div>
+            </td>
+            <td width="33.33%" valign="top" style="padding-left: 4px; padding-right: 4px;">
+                <div style="border: 1px solid #dbe5f6; border-radius: 12px; background: linear-gradient(160deg, #ffffff, #f5f6ff); padding: 12px; min-height: 112px; box-shadow: 0 4px 10px rgba(55, 68, 151, 0.08); transition: all 0.25s ease;">
+                    <div style="font-size: 24px; color: #3450c6; font-weight: 700; margin-bottom: 4px;">Multi-Site</div>
+                    <div style="color: #5a6882;">Website-specific and global default records</div>
+                </div>
+            </td>
+            <td width="33.33%" valign="top" style="padding-left: 8px;">
+                <div style="border: 1px solid #dbe5f6; border-radius: 12px; background: linear-gradient(160deg, #ffffff, #f4fffb); padding: 12px; min-height: 112px; box-shadow: 0 4px 10px rgba(27, 133, 116, 0.08); transition: all 0.25s ease;">
+                    <div style="font-size: 24px; color: #178070; font-weight: 700; margin-bottom: 4px;">Odoo Native</div>
+                    <div style="color: #5a6882;">Built for Odoo website and cookie bar flows</div>
+                </div>
+            </td>
+        </tr>
+    </table>
 
-    <section class="section">
-        <h2>Why Teams Buy This Module</h2>
-        <p class="lead">
-            This module provides a structured way to configure Consent Mode v2
-            behavior in Odoo without adding external Python dependencies.
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 14px;">
+        <tr>
+            <td width="50%" valign="top" style="padding-right: 8px;">
+                <div style="border: 1px solid #f0dede; border-radius: 12px; background: linear-gradient(160deg, #fff8f8, #ffffff); padding: 14px; min-height: 180px; box-shadow: 0 4px 10px rgba(173, 60, 60, 0.07);">
+                    <h3 style="margin: 0 0 8px 0; color: #8b2c2c;">Without a structured setup</h3>
+                    <ul style="margin: 0; padding-left: 20px; color: #5a6882;">
+                        <li>Ads attribution may be incomplete</li>
+                        <li>Analytics reports can become less reliable</li>
+                        <li>Consent defaults vary across websites and regions</li>
+                    </ul>
+                </div>
+            </td>
+            <td width="50%" valign="top" style="padding-left: 8px;">
+                <div style="border: 1px solid #dceedd; border-radius: 12px; background: linear-gradient(160deg, #f7fff8, #ffffff); padding: 14px; min-height: 180px; box-shadow: 0 4px 10px rgba(36, 142, 68, 0.08);">
+                    <h3 style="margin: 0 0 8px 0; color: #206233;">With this module</h3>
+                    <ul style="margin: 0; padding-left: 20px; color: #5a6882;">
+                        <li>Default consent values injected from backend configuration</li>
+                        <li>Consent updates sent to gtag after user actions</li>
+                        <li>Per-website and global rules managed in Odoo UI</li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <h2 style="margin: 0 0 10px 0; font-size: 30px; color: #122447;">Feature Highlights</h2>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 14px;">
+        <tr>
+            <td width="50%" valign="top" style="padding-right: 8px; padding-bottom: 8px;">
+                <div style="border: 1px solid #dde5f5; border-radius: 10px; background: #ffffff; padding: 12px; min-height: 96px; transition: all 0.25s ease;">
+                    <b style="color: #183675;">Complete Consent Mode v2 Mapping</b>
+                    <p style="margin: 6px 0 0 0; color: #5a6882;">Supports key consent parameters used by Google measurement flows.</p>
+                </div>
+            </td>
+            <td width="50%" valign="top" style="padding-left: 8px; padding-bottom: 8px;">
+                <div style="border: 1px solid #dde5f5; border-radius: 10px; background: #ffffff; padding: 12px; min-height: 96px; transition: all 0.25s ease;">
+                    <b style="color: #183675;">Region-Aware Defaults</b>
+                    <p style="margin: 6px 0 0 0; color: #5a6882;">Define strict regional defaults and separate global behavior.</p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td width="50%" valign="top" style="padding-right: 8px;">
+                <div style="border: 1px solid #dde5f5; border-radius: 10px; background: #ffffff; padding: 12px; min-height: 96px; transition: all 0.25s ease;">
+                    <b style="color: #183675;">Odoo Cookie Bar Integration</b>
+                    <p style="margin: 6px 0 0 0; color: #5a6882;">Consent updates follow visitor accept or reject actions.</p>
+                </div>
+            </td>
+            <td width="50%" valign="top" style="padding-left: 8px;">
+                <div style="border: 1px solid #dde5f5; border-radius: 10px; background: #ffffff; padding: 12px; min-height: 96px; transition: all 0.25s ease;">
+                    <b style="color: #183675;">Marketing Controls</b>
+                    <p style="margin: 6px 0 0 0; color: #5a6882;">Includes URL passthrough and ads data redaction options.</p>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <h2 style="margin: 0 0 10px 0; font-size: 30px; color: #122447;">Quick Setup</h2>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 14px;">
+        <tr>
+            <td width="25%" valign="top" style="padding-right: 8px;"><div style="border: 1px solid #dfe7f7; border-radius: 10px; background: #f8fbff; padding: 10px; min-height: 90px;"><b style="color: #0e4bbb;">Step 1</b><p style="margin: 6px 0 0 0; color: #5a6882;">Install module in addons path</p></div></td>
+            <td width="25%" valign="top" style="padding-left: 2px; padding-right: 6px;"><div style="border: 1px solid #dfe7f7; border-radius: 10px; background: #f8fbff; padding: 10px; min-height: 90px;"><b style="color: #0e4bbb;">Step 2</b><p style="margin: 6px 0 0 0; color: #5a6882;">Enable in Website settings</p></div></td>
+            <td width="25%" valign="top" style="padding-left: 4px; padding-right: 4px;"><div style="border: 1px solid #dfe7f7; border-radius: 10px; background: #f8fbff; padding: 10px; min-height: 90px;"><b style="color: #0e4bbb;">Step 3</b><p style="margin: 6px 0 0 0; color: #5a6882;">Set Tag ID and defaults</p></div></td>
+            <td width="25%" valign="top" style="padding-left: 6px;"><div style="border: 1px solid #dfe7f7; border-radius: 10px; background: #f8fbff; padding: 10px; min-height: 90px;"><b style="color: #0e4bbb;">Step 4</b><p style="margin: 6px 0 0 0; color: #5a6882;">Publish and verify behavior</p></div></td>
+        </tr>
+    </table>
+
+    <div style="border: 1px solid #0d1d36; border-radius: 14px; background: linear-gradient(140deg, #102341, #163867); padding: 18px; text-align: center; box-shadow: 0 8px 18px rgba(13, 29, 61, 0.2); transition: all 0.25s ease;">
+        <img src="icon.png" alt="Google Consent Mode icon" width="130" style="margin-bottom: 8px;"/>
+        <h3 style="margin: 0 0 8px 0; color: #ffffff; font-size: 26px;">Reliable Consent Mode Setup for Odoo</h3>
+        <p style="margin: 0; color: #d7e2f6;">
+            Compatibility: Odoo 17 Community, Enterprise, Odoo.sh, and On-Premise.<br/>
+            Odoo Online availability depends on Odoo Apps deployment support.
         </p>
-
-        <div class="split">
-            <div class="box">
-                <h3>Without a robust setup</h3>
-                <ul class="clean">
-                    <li>Google Ads attribution becomes incomplete</li>
-                    <li>Analytics reports lose business clarity</li>
-                    <li>Consent defaults vary across websites and regions</li>
-                </ul>
-            </div>
-            <div class="box">
-                <h3>With this module</h3>
-                <ul class="clean">
-                    <li class="ok">Default consent values are injected from backend configuration</li>
-                    <li class="ok">Consent updates are sent to gtag when users accept or reject</li>
-                    <li class="ok">Website-specific and global rules can be managed in the UI</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <h2>Feature Highlights</h2>
-        <div class="grid">
-            <article class="feature">
-                <h3>Complete Consent Mode v2 Mapping</h3>
-                <p>Supports all key consent parameters needed by modern Google measurement flows.</p>
-            </article>
-            <article class="feature">
-                <h3>Region-Aware Defaults</h3>
-                <p>Configure strict defaults for selected regions and separate global behavior.</p>
-            </article>
-            <article class="feature">
-                <h3>Odoo Cookie Bar Integration</h3>
-                <p>Consent updates follow user actions so signal changes are reflected immediately.</p>
-            </article>
-            <article class="feature">
-                <h3>Multi-Website Support</h3>
-                <p>Apply rules per website, or use global records to keep governance consistent.</p>
-            </article>
-            <article class="feature">
-                <h3>Marketing Controls</h3>
-                <p>Includes URL passthrough and ads data redaction options in one place.</p>
-            </article>
-            <article class="feature">
-                <h3>No Extra Runtime Complexity</h3>
-                <p>Built for Odoo installation flow and backend management from day one.</p>
-            </article>
-        </div>
-    </section>
-
-    <section class="section">
-        <h2>Go Live In 4 Steps</h2>
-        <div class="steps">
-            <div class="step"><b>Step 1</b><br/>Install the module in your addons path.</div>
-            <div class="step"><b>Step 2</b><br/>Enable Google Consent Mode in Website settings.</div>
-            <div class="step"><b>Step 3</b><br/>Add your Google Tag ID and consent defaults.</div>
-            <div class="step"><b>Step 4</b><br/>Publish and monitor analytics quality.</div>
-        </div>
-    </section>
-
-    <section class="cta">
-        <h2>Need a Clear Consent Mode Setup in Odoo?</h2>
-        <p>
-            Use this module to configure and maintain Consent Mode v2 behavior
-            from Odoo backend settings.
-        </p>
-        <div class="pill-row">
-            <span class="pill">Consent v2 ready</span>
-            <span class="pill">GDPR-aware defaults</span>
-            <span class="pill">Fast backend setup</span>
-            <span class="pill">Built for Odoo 17</span>
-        </div>
-    </section>
-
-    <p class="footer">
-        Product compatibility: Odoo 17 Community, Enterprise, Odoo.sh, and On-Premise.
-        Odoo Online availability depends on Odoo Apps deployment support.
-    </p>
-
+    </div>
 </div>
-</body>
-</html>
